@@ -1,17 +1,11 @@
 a = [5, 10, 15, 20, 25]
 
-list_len = a.__len__() - 1
-new_list = []
-new_list.append(a[0])
-new_list.append(a[list_len])
+new_list = [a[0], a[1], a[-2], a[-1]]
+# new_list.append(a[0])
+# new_list.append(a[-1])
+
+print(a[2])
+print(a[-3])
 
 print(new_list)
 
-
-
-another_list = []
-another_list.append(a[0])
-another_list.append(a[-1])
-
-
-print(another_list)
