@@ -1,0 +1,19 @@
+watch -n1 vcgencmd measure_temp
+
+watch -n1 vcgencmd measure_clock arm
+
+Apt
+-----------------------------
+ls /etc/apt/sources.list.d
+sudo rm -i /etc/apt/sources.list.d/myppa.list
+
+VS Code
+---------------------
+headmelted_vscode.list
+
+sudo raspi-config
+
+
+Backup raspberry pi
+--------------------
+https://www.raspberrypi.org/documentation/linux/filesystem/backup.md
