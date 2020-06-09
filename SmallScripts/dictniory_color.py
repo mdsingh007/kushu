@@ -24,6 +24,8 @@ min_count = 0
 
 diffrence = 0
 
+
+
 i = 0
 for key in classes:
     val = classes[key]
