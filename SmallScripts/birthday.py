@@ -3,12 +3,12 @@ from datetime import date
 
 
 def dump_dictnory(dictn):
-    with open("SmallScripts/birthdays.json", "w") as k:
+    with open("/home/pi/programming/kushu/SmallScripts/birthdays.json", "w") as k:
         txt = json.dumps(dictn, indent=4, sort_keys=True, default=str)
         k.write(txt)
 
 def read_dictnory():
-    with open("SmallScripts/birthdays.json", "r") as k:
+    with open("/home/pi/programming/kushu/SmallScripts/birthdays.json", "r") as k:
         try:
             d = json.loads(k.read())
             for k, v in d.items():
