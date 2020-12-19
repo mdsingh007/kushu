@@ -1,3 +1,9 @@
+'''
+Coding excercise - 18 Dec 2020
+ - Add splash screen
+ - improve Game screen. e.g. Game over text should be in in center ofscreen. Show high score.
+ - Game should restart after pressing space.
+'''
 import pgzrun
 
 
@@ -7,7 +13,16 @@ HEIGHT = 500
 hero = Actor('smallbird')
 score = 0
 speed = 3
-game_over = False
+game_state = 0 # 0 is splash screen; 1 is game ; 2 is game over
+# game_over = False
+# showsplash = True
+
+def resume():
+    global game_state
+    game_state = 1
+    set_original()
+    return 
+
 
 aliens = []
 for i in range(3):
@@ -31,8 +46,11 @@ set_original()
 def draw():
     # screen.clear()
     screen.fill((102, 230, 255))
-    if game_over:
-        screen.draw.text(f"Game Over", (5, 5), color="orange")
+    if game_state == 0:
+        screen.draw.text(f"Welcome to space invaders, press B to begin", (50, 220), color="blue", fontsize=30)
+    elif game_state == 2:
+        screen.draw.text(f"Game Over", (160, 220), color="orange", fontsize=50)
+        screen.draw.text(f"press R to respawn", (100, 250), color="orange", fontsize=50)
     else:
         hero.draw()
         screen.draw.text(f"score: {score}", (5, 5), color="orange")
@@ -41,15 +59,22 @@ def draw():
             i.draw()
 
 def update():
-    global speed, score, game_over
+    global speed, score, game_over, game_state
 
 
     # if hero.collidelist(aliens):
     #     print ('collided')
     #     return 
+    if game_state == 0:
+        if keyboard[keys.B]:
+            game_state = 1
+        return
+
     for a in aliens:
         if hero.colliderect(a) == True:
-            game_over = True
+            game_state = 2
+            if keyboard[keys.R]:
+                resume()
             return
 
 
