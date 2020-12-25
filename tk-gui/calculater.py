@@ -1,5 +1,8 @@
 from tkinter import *
 
+
+kushu
+
 canvas=Tk()
 
 # canvas.geometry("200x190")

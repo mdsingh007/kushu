@@ -30,7 +30,7 @@ set_original()
 
 def draw():
     # screen.clear()
-    screen.fill((102, 230, 255))
+    screen.blit("background", (0, 0))
     if game_over:
         screen.draw.text(f"Game Over", (5, 5), color="orange")
     else:
