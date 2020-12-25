@@ -59,23 +59,18 @@ def draw():
             i.draw()
 
 def update():
-    global speed, score, game_over, game_state
+    global speed, score, game_state
 
-
-    # if hero.collidelist(aliens):
-    #     print ('collided')
-    #     return 
     if game_state == 0:
         if keyboard[keys.B]:
             game_state = 1
         return
 
-    for a in aliens:
-        if hero.colliderect(a) == True:
-            game_state = 2
-            if keyboard[keys.R]:
-                resume()
-            return
+    if hero.collidelist(aliens) != -1: # -1 means no collision
+        game_state = 2
+        if keyboard[keys.R]:
+            resume()
+        return
 
 
     # Ensure hero does not go out of screen
