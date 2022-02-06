@@ -341,7 +341,6 @@ class MyGame(arcade.Window):
                 player, oplayer = oplayer, player
 
                 # check if game is over
-                print ('get_best_move', get_best_move())
                 if not get_best_move():
                     game_over = True
             else:
