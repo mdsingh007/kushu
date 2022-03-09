@@ -37,8 +37,11 @@ while True:
         window['listview'].update(visible=True)
         window['editview'].update(visible=False)
     if event == 'Edit':
-        selected_rownum = values['-table-'][0]
-        print(listdata[selected_rownum][0])
+        try:
+            selected_rownum = values['-table-'][0]
+            print(listdata[selected_rownum][0])
+        except IndexError:
+            print('Invalid input, try again')
     if event == 'New':
         window['listview'].update(visible=False)
         window['editview'].update(visible=True)
