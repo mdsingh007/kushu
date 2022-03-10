@@ -1,5 +1,5 @@
 import PySimpleGUI as sg
-from sqlite_database_pb import sql_fetch, new
+from sqlite_database_pb import sql_fetch, new, edit
 
 
 sg.theme('DarkAmber')   # Add a touch of color
@@ -29,15 +29,22 @@ window = sg.Window('Phone Book',
             )
 
 # Event Loop to process "events" and get the "values" of the inputs
+is_edit = False
 while True:
     event, values = window.read()
     if event == 'Ok':
-        new(values[0], values[1], values[2], values[3])
+        if is_edit:
+            selrow = values['-table-'][0]
+            id = listdata[selrow][0]
+            edit(id, values['-txtName-'], values['-txtPhone-'], values['-txtHphone-'], values['-txtAdd-'])
+        else:
+            new(values['-txtName-'], values['-txtPhone-'], values['-txtHphone-'], values['-txtAdd-'])
         window['-table-'].update(values=sql_fetch())
         window.refresh()
         window['listview'].update(visible=True)
         window['editview'].update(visible=False)
     if event == 'Edit':
+        is_edit = True
         try:
             selrow = values['-table-'][0]
             print(listdata[selrow][0])
@@ -50,6 +57,11 @@ while True:
         except IndexError:
             print('Invalid input, try again')
     if event == 'New':
+        is_edit = False
+        window['-txtName-'].update(value='')
+        window['-txtPhone-'].update(value='')
+        window['-txtHphone-'].update(value='')
+        window['-txtAdd-'].update(value='')
         window['listview'].update(visible=False)
         window['editview'].update(visible=True)
     if event == 'Cancel':
