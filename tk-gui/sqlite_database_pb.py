@@ -1,6 +1,14 @@
 import sqlite3
+import sys
+import os
 
-con = sqlite3.connect('phone_book.db')
+DB_NAME = 'phone_book.db'
+DB_PATH = os.path.join( os.getcwd(), DB_NAME )
+# if db does not exist, exit instead of creating one
+if not os.path.exists(DB_PATH):
+    sys.exit(f"database does not exist. lookup failed for - {DB_PATH}")
+
+con = sqlite3.connect(DB_NAME)
 cursorObj = con.cursor()
 
 
