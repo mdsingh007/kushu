@@ -4,18 +4,19 @@ from sqlite_database_pb import sql_fetch, new
 
 sg.theme('DarkAmber')   # Add a touch of color
 # All the stuff inside your window.
+listdata = sql_fetch()
+
 layout2 = [  [sg.Text('Contacts')],
-            [sg.Text('Name', size=(9, 1)), sg.InputText()],
-            [sg.Text('Phone', size=(9, 1)), sg.InputText()],
-            [sg.Text('Home Phone', size=(9, 1)), sg.InputText()],
-            [sg.Text('Address', size=(9, 1)), sg.InputText()],
+            [sg.Text('Name', size=(9, 1)), sg.InputText(key='-txtName-')],
+            [sg.Text('Phone', size=(9, 1)), sg.InputText(key='-txtPhone-')],
+            [sg.Text('Home Phone', size=(9, 1)), sg.InputText(key='-txtHphone-')],
+            [sg.Text('Address', size=(9, 1)), sg.InputText(key='-txtAdd-')],
             [sg.Push(), sg.Button('Ok', size=(3, 1)), sg.Button('Cancel', size=(6, 1)), sg.Push()],
             ]
 
 new_button = [[sg.Push(), sg.Button('New', size=(3, 1)), sg.Button('Edit'), sg.Push()]]
 headings = ['id', 'Name', 'Phone', 'Home Phone','Address']
-listdata = sql_fetch()
-print(listdata)
+# print(listdata)
 layout = new_button + [[sg.Table(listdata, headings=headings, key='-table-', enable_events=True)]]
 
 # Create the Window
@@ -38,8 +39,14 @@ while True:
         window['editview'].update(visible=False)
     if event == 'Edit':
         try:
-            selected_rownum = values['-table-'][0]
-            print(listdata[selected_rownum][0])
+            selrow = values['-table-'][0]
+            print(listdata[selrow][0])
+            window['listview'].update(visible=False)
+            window['editview'].update(visible=True)
+            window['-txtName-'].update(value=listdata[selrow][1])
+            window['-txtPhone-'].update(value=listdata[selrow][2])
+            window['-txtHphone-'].update(value=listdata[selrow][3])
+            window['-txtAdd-'].update(value=listdata[selrow][4])
         except IndexError:
             print('Invalid input, try again')
     if event == 'New':
