@@ -1,8 +1,8 @@
 import PySimpleGUI as sg
-from sqlite_database_pb import sql_fetch, new, edit
+from sqlite_database_pb import sql_fetch, new, edit, delete
 
 
-sg.theme('DarkAmber')   # Add a touch of color
+# sg.theme('Default')   # Add a touch of color
 # All the stuff inside your window.
 listdata = sql_fetch()
 
@@ -14,7 +14,7 @@ layout2 = [  [sg.Text('Contacts')],
             [sg.Push(), sg.Button('Ok', size=(3, 1)), sg.Button('Cancel', size=(6, 1)), sg.Push()],
             ]
 
-new_button = [[sg.Push(), sg.Button('New', size=(3, 1)), sg.Button('Edit'), sg.Push()]]
+new_button = [[sg.Push(), sg.Button('New', size=(3, 1)), sg.Button('Edit'), sg.Button('Delete'), sg.Push()]]
 headings = ['id', 'Name', 'Phone', 'Home Phone','Address']
 # print(listdata)
 layout = new_button + [[sg.Table(listdata, headings=headings, key='-table-', enable_events=True)]]
@@ -67,10 +67,15 @@ while True:
     if event == 'Cancel':
         window['listview'].update(visible=True)
         window['editview'].update(visible=False)
+    if event == 'Delete':
+        selrow = values['-table-'][0]
+        id = listdata[selrow][0]
+        delete(id)
+        window['-table-'].update(values=sql_fetch())
+        window.refresh()
     if event == sg.WIN_CLOSED: # if user closes window or clicks cancel
         break
-    print('You entered ', values)
-    print(event)
+    print(f'Event -> {event}, \nvalues -> {values}')
 
 window.close()
 # print(abc)

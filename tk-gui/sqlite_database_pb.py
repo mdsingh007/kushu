@@ -27,7 +27,16 @@ def new(name, ph, hphone, add):
 
 def edit(id, name, ph, hphone, add):
     cursorObj = con.cursor()
-    cursorObj.execute(f'UPDATE phone_book SET name = "{name}", phone = "{ph}", homephone = "{hphone}", address = "{add}" where id = {id}')
+    query = f'UPDATE phone_book SET name = "{name}", phone = "{ph}", homephone = "{hphone}", address = "{add}" where id = {id}'
+    print(query)
+    cursorObj.execute(query)
+    con.commit()
+
+def delete(id):
+    cursorObj = con.cursor()
+    query = f'DELETE FROM phone_book WHERE id = {id}'
+    print(query)
+    cursorObj.execute(query)
     con.commit()
 
 # if __name__ == '__main__':
