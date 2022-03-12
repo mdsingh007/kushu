@@ -9,10 +9,9 @@ if not os.path.exists(DB_PATH):
     sys.exit(f"database does not exist. lookup failed for - {DB_PATH}")
 
 con = sqlite3.connect(DB_NAME)
-cursorObj = con.cursor()
-
 
 def sql_fetch():
+    cursorObj = con.cursor()
     cursorObj.execute('SELECT id, name, phone, homephone, address FROM phone_book')
 
     rows = cursorObj.fetchall()
@@ -20,6 +19,7 @@ def sql_fetch():
     return rows
 
 def new(name, ph, hphone, add):
+    cursorObj = con.cursor()
     query = f"INSERT INTO phone_book (name, phone, homephone, address) VALUES('{name}', {ph}, {hphone}, '{add}')"
     print(query)
     cursorObj.execute(query)

@@ -16,7 +16,6 @@ layout2 = [  [sg.Text('Contacts')],
 
 new_button = [[sg.Push(), sg.Button('New', size=(3, 1)), sg.Button('Edit'), sg.Button('Delete'), sg.Push()]]
 headings = ['id', 'Name', 'Phone', 'Home Phone','Address']
-# print(listdata)
 layout = new_button + [[sg.Table(listdata, headings=headings, key='-table-', enable_events=True)]]
 
 # Create the Window
@@ -25,7 +24,6 @@ window = sg.Window('Phone Book',
                     sg.Column(layout, key='listview'),
                     sg.Column(layout2, key='editview', visible=False)
                 ]], 
-                font='Courier 12'
             )
 
 # Event Loop to process "events" and get the "values" of the inputs
@@ -78,4 +76,3 @@ while True:
     print(f'Event -> {event}, \nvalues -> {values}')
 
 window.close()
-# print(abc)
