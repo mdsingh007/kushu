@@ -3,7 +3,7 @@ import PySimpleGUI as sg
 from sqlite_database_pb import sql_fetch, new, edit, delete
 
 
-# sg.theme('Default')   # Add a touch of color
+sg.theme('DarkTeal10')   # Add a touch of color
 # All the stuff inside your window.
 # listdata = sql_fetch()
 
