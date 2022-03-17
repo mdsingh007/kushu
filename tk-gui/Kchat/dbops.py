@@ -24,9 +24,10 @@ def select_all():
     return execute_sql(sql).fetchall()
 
 
-def new(datetime, sender, receiver, message):
-    sql = f"INSERT INTO chats (datetime, sender, receiver, message) VALUES('{datetime}', '{sender}', '{receiver}' , '{message}')"
+def new(sender, receiver, message):
+    sql = f"INSERT INTO chats (sender, receiver, message) VALUES('{sender}', '{receiver}' , '{message}')"
     execute_sql(sql)
+
 
 # if __name__ == '__main__':
 #     select_all()
