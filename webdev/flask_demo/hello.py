@@ -1,6 +1,8 @@
-from flask import Flask
+import sys
+from flask import Flask, request
 import sqlite_database_pb as db
 from flask import render_template
+
 
 app = Flask(__name__)
 
@@ -11,11 +13,33 @@ def hello_world2():
     return render_template('hello.html', data = data)
 
 @app.route("/edit/")
-def hello_world3():
-    data = db.sql_fetch()
-    return render_template('edit.html', data = data)
+def edit():
+    id = request.args.get('id')
+    # print(key, file=sys.stdout)
+    # variables = {"name": "Kushagra"}
+    pb_data = ""
+    if id == None:
+        print("new", file=sys.stdout)
+    else:
+        print("edit", file=sys.stdout)
+        pb_data = db.get_by_id(id)
+    return render_template('edit.html', data = pb_data)
 
-
+@app.route("/edit_submit/")
+def edit_submit():
+    id = request.args.get('id')
+    name = request.args.get('name')
+    phone = request.args.get('phone')
+    homephone = request.args.get('home_phone')
+    address = request.args.get('address')
+    dr_id = request.args.get('dr_id')
+    if id and id != None:
+        db.edit(id, name, phone, homephone, address)
+    elif dr_id and dr_id != None:
+        db.delete(dr_id)
+    else:
+        db.new(name, phone, homephone, address)
+    return "YAY! Your entry is saved. Go to <a href='/tmpl/'>home page</a>"
 
 @app.route("/")
 def hello_world():

@@ -11,19 +11,27 @@
         </style>
     </head>
 <body>
+    <!-- <p>{{data}}</p> -->
 <table>
+
     <tr>
-        <form action="/action_page.php">
-            <label class='fw' for="fname">Name:</label>
-            <input type="text" id="fname" name="fname"><br><br>
-            <label class='fw' for="lname">Phone:</label>
-            <input type="text" id="lname" name="lname"><br><br>
-            <label class='fw' for="lname">Home Phone:</label>
-            <input type="text" id="lname" name="lname"><br><br>
-            <label class='fw' for="lname">Address:</label>
-            <input type="text" id="lname" name="lname"><br><br>
-            <input type="submit" value="Submit">
-          </form>
+        <form action="/edit_submit/">
+            <input type="hidden" id="id" name="id" value="{{data[0]}}">
+            <label class='fw' for="name">Name:</label>
+            <input type="text" id="name" name="name" value="{{data[1]}}"><br><br>
+            <label class='fw' for="phone">Phone:</label>
+            <input type="text" id="phone" name="phone" value="{{data[2]}}"><br><br>
+            <label class='fw' for="home_phone">Home Phone:</label>
+            <input type="text" id="home_phone" name="home_phone" value="{{data[3]}}"><br><br>
+            <label class='fw' for="address">Address:</label>
+            <input type="text" id="address" name="address" value="{{data[4]}}"><br><br>
+            <input type="submit" id="submit" name="submit" value="Save">
+            &nbsp;
+        </form>
+        <form action="/edit_submit/">
+            <input type="hidden" id="dr_id" name="dr_id" value="{{data[0]}}">
+            <input type="submit" id="dr" name="dr" value="Delete Record">
+        </form>
     </tr>
 </table>
 </body>

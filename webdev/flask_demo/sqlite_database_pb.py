@@ -12,7 +12,7 @@ if not os.path.exists(DB_PATH):
 def execute_sql(query):
     con = sqlite3.connect(DB_NAME)
     cursorObj = con.cursor()
-    print(query)
+    # print(query)
     cursorObj.execute(query)
     con.commit()
     return cursorObj
@@ -25,6 +25,10 @@ def sql_fetch(whclause = ''):
     
     rows = cur.fetchall()
     return rows
+
+def get_by_id(id):
+    data = execute_sql(f"SELECT * FROM phone_book WHERE id={id}").fetchall()
+    return data[0]
 
 def new(name, ph, hphone, add):
     execute_sql(f"INSERT INTO phone_book (name, phone, homephone, address) VALUES('{name}', {ph}, {hphone}, '{add}')")
