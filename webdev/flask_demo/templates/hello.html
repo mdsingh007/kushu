@@ -17,13 +17,27 @@
             padding-left: 10px;
             padding-right: 10px;
         }
+        form
+        {
+            float: left;
+        }
     </style>
 </head>
 <body>
     <h1>K-book</h1>
     <form action="/edit/">
         <input type="submit" value="Add New Contact"/>
-    </form>    <table>
+    </form>
+    <form action="/tmpl/">
+        &nbsp;
+        <label class='fw' for="">Search:</label>
+        <input type="text" id="search" name="search"><br><br>
+    </form>
+    &nbsp;
+        <button id="show_all" name="show_all" value="show_all" onclick="window.location.href = '/tmpl/'">
+            Show  All 
+        </button>
+    <table>
         <br>
         <tr>
         <th>Id</th>

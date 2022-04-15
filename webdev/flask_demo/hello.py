@@ -9,7 +9,11 @@ app = Flask(__name__)
 
 @app.route("/tmpl/")
 def hello_world2():
-    data = db.sql_fetch()
+    search = request.args.get('search')
+    if search and search != None:
+        data = db.sql_fetch(search)
+    else:
+        data = db.sql_fetch()
     return render_template('hello.html', data = data)
 
 @app.route("/edit/")
