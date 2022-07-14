@@ -1,0 +1,103 @@
+<html lang="en">
+    <head>
+        <title>Kwitter</title>
+        <style>
+            label.fw
+            {
+                display: inline-block;
+                width: 100px;
+            }
+
+            table tr td
+            {
+                vertical-align: top;
+            }
+
+            div.kweet
+            {
+                background-color:beige;
+                padding-bottom: 1px;
+                /* padding-left: 15px; */
+                margin-bottom: 9px;
+            }
+            div.kweet div.header
+            {
+                background-color:rgb(195, 172, 166);
+                display: table;
+                height: 20px;
+                overflow: hidden;
+            }
+            div.kweet div.header div
+            {
+                display: table-cell;
+                vertical-align:middle;
+            }
+            div.kweet div.kweet_content
+            {
+                padding: 10px;
+            }
+            a.users
+            {
+                display: block;
+                width: 150;
+                /* background-color: rgb(163, 196, 169); */
+            }
+            h1
+            {
+                background-color: aquamarine;
+                font-family: Arial, sans-serif;
+                padding: 20px;
+                margin: 0;
+            }
+            h2
+            {
+                /* background-color: rgb(0, 208, 255); */
+                font-family: 'Courier New', monospace;
+            }
+            div.kweet_div
+            {
+                border-left: solid 1px silver;
+                padding-left: 20px;
+            }
+        </style>
+    </head>
+<body>
+    <!-- <div>{{data}}</div> -->
+    <table border="0">
+        <tr>
+            <h1>Kwitter</h1>
+            <td>
+                <h2>Users</h2>
+                {% for kweeter in data['authors']%}
+                <a class="users" href="?user={{kweeter}}">{{ kweeter }}</a>
+                <br>
+                {% endfor %}
+                <td>
+                    <div class="Kweet_div">
+                        <h2>Latest kweets</h2>
+                        {% if data %}
+                            {% for item in data['kweets'] %}
+                                <div class="kweet">
+                                    <!-- {{item}} -->
+                                    <!-- year/month and day -->
+                                    <div class="header">
+                                        <!-- name of the user -->
+                                        <img src='{{item[3]}}' alt="" width="25" height="25">
+                                        <div for="">&nbsp; {{data['kweets'][0][2]}} &#8226;	{{item[1][0:10]}} </div>
+                                    </div>
+                                    <!-- actual kweet content -->
+                                    <div class="kweet_content">{{item[0]}}</div>
+                                </div>
+                                <div>
+                                    <form type="submit">
+                                        New Kweet: 
+                                        <input type="text">
+                                    </form>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+            </td>
+        </tr>
+    </table>
+</body>
