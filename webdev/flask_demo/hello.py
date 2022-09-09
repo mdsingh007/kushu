@@ -1,10 +1,13 @@
 import sys
-from flask import Flask, request
+from flask import Flask, request, render_template
 import sqlite_database_pb as db
-from flask import render_template
 
 
 app = Flask(__name__)
+
+@app.route("/twitter/")
+def twitter():
+    return render_template('twitter_bs.html')
 
 
 @app.route("/tmpl/")
