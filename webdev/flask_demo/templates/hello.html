@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>My Webpage</title>
+    <title>K-book</title>
     <style>
         body
         {
-            justify-content: center;
+            justify-content: left;
         }
         table
         {
@@ -24,6 +24,7 @@
     </style>
 </head>
 <body>
+
     <h1>K-book</h1>
     <form action="/edit/">
         <input type="submit" value="Add New Contact"/>
@@ -37,6 +38,7 @@
         <button id="show_all" name="show_all" value="show_all" onclick="window.location.href = '/tmpl/'">
             Show  All 
         </button>
+    <div>   
     <table>
         <br>
         <tr>
@@ -56,5 +58,6 @@
         </tr>
         {% endfor %}
     </table>
+</div>
 </body>
 </html>

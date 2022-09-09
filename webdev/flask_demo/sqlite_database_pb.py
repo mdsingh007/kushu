@@ -12,7 +12,7 @@ if not os.path.exists(DB_PATH):
 def execute_sql(query):
     con = sqlite3.connect(DB_NAME)
     cursorObj = con.cursor()
-    # print(query)
+    print(query)
     cursorObj.execute(query)
     con.commit()
     return cursorObj
@@ -38,6 +38,22 @@ def edit(id, name, ph, hphone, add):
 
 def delete(id):
     execute_sql(f'DELETE FROM phone_book WHERE id = {id}')
+
+def sql_fetch2():
+    cur = execute_sql('SELECT id, author, kweet, postedon FROM kwitter')
+    rows = cur.fetchall()
+    return rows
+
+def get_by_author(author):
+    data = execute_sql(f"select kwitter.kweet, kwitter.postedon, users.name, users.picture from kwitter  join users ON kwitter.userid = users.id where users.name = '{author}'").fetchall()
+    return data
+
+def get_kweeters():
+    data = execute_sql("SELECT name FROM users").fetchall()
+    return data
+
+def new_kweet(new_kweet, userid, postedon):
+    execute_sql(f"INSERT INTO kwitter (kweet, postedon, userid) VALUES('{new_kweet}', '{userid}', '{postedon}')")
 
 # if __name__ == '__main__':
 #     new('a', 'b', 'c', 'd')

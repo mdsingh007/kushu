@@ -54,6 +54,22 @@ def edit_submit():
     except:
         return "Phone numbers can only have numbers, please <a href='/edit/'>try again</a>"
 
+@app.route('/kwitter/')
+def kwitter():
+    try:
+        authors = db.get_kweeters()
+        authors = [x[0] for x in authors]
+
+        user = request.args.get('user').lower()
+        
+        if user not in authors:
+            return f"Sorry, {user} is not an authorized user"
+        
+        data = db.get_by_author(user)
+    except AttributeError:
+        data = ''
+    return render_template('kwitter.html', data = {'kweets':data, 'authors':authors})
+
 
 @app.route("/")
 def hello_world():
