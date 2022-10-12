@@ -11,4 +11,4 @@ def is_disarium(number):
     else:
         return "Nope!"
 
-print(is_disarium(135))
+print(is_disarium(7))

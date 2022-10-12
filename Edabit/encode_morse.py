@@ -12,8 +12,9 @@ char_to_dots = {
 }
 def encode_morse(text1):
     text1 = text1.upper()
+    text2 = []
     for elem in text1:
-        text1.replace(elem, char_to_dots[elem])
-    return text1
+      text2.append(char_to_dots[elem])
+    return " ".join(text2)
 
-encode_morse("HELP ME !")
+print(encode_morse("HELP ME !"))
