@@ -1,0 +1,12 @@
+HOA Management System
+
+
+Add home information.Display home information.
+add/remove/edit home information
+Report - all members that have paid money
+Report - All members that have not paid money
+report - payment history of a member
+save library/open library
+Report - Money earned monthly
+
+
