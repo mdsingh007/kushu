@@ -58,5 +58,39 @@ def main():
     # Display the frequency of the cello.
     display_frequency(frequency)
 
+import pyaudio
+import numpy as np
+
+def sample_microphone():
+    # Initialize PyAudio
+    p = pyaudio.PyAudio()
+
+    # Open microphone stream
+    stream = p.open(format=pyaudio.paInt16, channels=1, rate=44100, input=True, frames_per_buffer=1024)
+
+    # Read data from microphone stream
+    data = np.fromstring(stream.read(1024), dtype=np.int16)
+
+    # Close microphone stream
+    stream.stop_stream()
+    stream.close()
+
+    # Terminate PyAudio
+    p.terminate()
+
+    # Compute FFT of audio data
+    fft = np.fft.fft(data)
+
+    # Compute frequencies corresponding to FFT bins
+    frequencies = np.fft.fftfreq(len(fft), d=1/44100)
+
+    # Find dominant frequency
+    max_index = np.argmax(np.abs(fft))
+    dominant_frequency = frequencies[max_index]
+
+    # Print dominant frequency
+    print("Dominant frequency: {:.2f} Hz".format(dominant_frequency))
+
+
 if __name__ == "__main__":
     main()
