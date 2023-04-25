@@ -6,9 +6,10 @@ def read_audio():
     pa = pyaudio.PyAudio()
 
     # Open a microphone stream.
-    with pa.open(format=pyaudio.paInt16, channels=1, rate=44100, input=True) as stream:
+    # with pa.open(format=pyaudio.paInt16, channels=1, rate=44100, input=True) as stream:
+    stream = pa.open(format=pyaudio.paInt16, channels=1, rate=44100, input=True)
         # Read the audio input.
-        data = stream.read(4096)
+    data = stream.read(4096)
 
     # Close the stream.
     stream.close()
@@ -18,8 +19,12 @@ def read_audio():
 
 def convert_audio_to_frequencies(data):
     # Convert the audio data to a NumPy array.
-    data = np.array(data)
-
+    data = np.frombuffer(data, dtype=np.int32)
+    
+    # data = np.array(data)
+    # data = data.flatten()
+    # print(data)
+    # waveform = map(ord,list(data))
     # Calculate the Fast Fourier Transform (FFT) of the audio data.
     fft = np.fft.fft(data)
 
