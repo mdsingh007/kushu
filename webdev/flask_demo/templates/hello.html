@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>K-book</title>
+    <style>
+        body
+        {
+            justify-content: left;
+        }
+        table
+        {
+            background-color: aquamarine;
+        }
+        table tr td
+        {
+            background-color: white;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        form
+        {
+            float: left;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>K-book</h1>
+    <form action="/edit/">
+        <input type="submit" value="Add New Contact"/>
+    </form>
+    <form action="/tmpl/">
+        &nbsp;
+        <label class='fw' for="">Search:</label>
+        <input type="text" id="search" name="search"><br><br>
+    </form>
+    &nbsp;
+        <button id="show_all" name="show_all" value="show_all" onclick="window.location.href = '/tmpl/'">
+            Show  All 
+        </button>
+    <div>   
+    <table>
+        <br>
+        <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Home Phone</th>
+        <th>Address</th>
+    </tr>
+    {% for item in data %}
+        <tr>
+            <td><a href='/edit/?id={{item[0]}}'>{{item[0]}}</a></td>
+            <td>{{item[1]}}</td>
+            <td>{{item[2]}}</td>
+            <td>{{item[3]}}</td>
+            <td>{{item[4]}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+</body>
+</html>
