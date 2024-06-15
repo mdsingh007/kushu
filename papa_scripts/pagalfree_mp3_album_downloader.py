@@ -52,7 +52,7 @@ href = get_valid_links(url)
 
 if len(sys.argv) > 1 and sys.argv[1] == 'song':
     folder = 'mixed'
-    mp = ([ x for x in href if '128' in x ][0])
+    mp = ([ x for x in href if '320' in x ][0])
     print (mp)
     download_mp3(mp)
 else:    
@@ -65,10 +65,9 @@ else:
 
     for u in murls:
         href = get_valid_links(u)
-        mp = ([ x for x in href if '128' in x ][0])
+        mp = ([ x for x in href if '320' in x ][0])
         print (mp)
         download_mp3(mp)
 
     
 # download_mp3()
- 
